@@ -33,14 +33,17 @@ public class Magpie2
 		String response = "";
 		if (statement.indexOf("no") >= 0)
 		{
-			response = "Why so negative?";
+			response = "chief keef nah";
 		}
 		else if (statement.indexOf("mother") >= 0
-				|| statement.indexOf("father") >= 0
-				|| statement.indexOf("sister") >= 0
+				|| statement.indexOf("father") >= 0)
+		{
+			response = "ouoofta";
+		}
+		else if (statement.indexOf("sister") >= 0
 				|| statement.indexOf("brother") >= 0)
 		{
-			response = "Tell me more about your family.";
+		    response = "oh partner that's a heart stopper";
 		}
 		else
 		{
