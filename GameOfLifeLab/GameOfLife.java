@@ -17,11 +17,11 @@ public class GameOfLife
     // the world comprised of the grid that displays the graphics for the game
     private ActorWorld world;
     
-    // the game board will have 5 rows and 5 columns
-    private final int ROWS = 10;
-    private final int COLS = 10;
+    // the game board will have 100 rows and 100 columns
+    private final int ROWS = 100;
+    private final int COLS = 100;
     
-    // constants for the location of the three cells initially alive
+    // constants for the location of the 9 cells initially alive
     private final int X1 = 0, Y1 = 0;
     private final int X2 = 0, Y2 = 8;
     private final int X3 = 0, Y3 = 9;
@@ -123,7 +123,28 @@ public class GameOfLife
         Grid<Actor> grid = world.getGrid();
         
         // insert magic here...
-        
+        int row = 0;
+        for (row = 0; row<100; row++)
+        {
+            for (int column = 0; column<100; column++)
+            {
+                
+                ArrayList<Location> array = grid.getNeighbors(Location);
+                int numNeighbors = array.size();
+                if (numNeighbors==3 && grid.get(row,column)==null)
+                {
+                    Rock rock = new Rock();
+                    Location loc = new Location(row, column);
+                    grid.put(loc, rock);
+                }
+                else if ((numNeighbors<2 || numNeighbors>3) &&  grid.get(row,column)!=null)
+                {
+                    grid.remove(row, column);
+                }
+            }
+            
+        }
+
     }
     
     /**

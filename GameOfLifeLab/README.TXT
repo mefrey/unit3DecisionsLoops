@@ -30,6 +30,8 @@ The universe of the Game of Life is an infinite two-dimensional orthogonal
 	moment at which this happens is sometimes called a tick (in other words,
 	each generation is a pure function of the preceding one). The rules
 	continue to be applied repeatedly to create further generations.
+* The grid size will be 100 units bounded with no wrap around
+* 
 
 
 Nonfunctional Requirements:
