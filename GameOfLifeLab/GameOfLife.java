@@ -43,18 +43,19 @@ public class GameOfLife
     {
         // create the grid, of the specified size, that contains Actors
         BoundedGrid<Actor> grid = new BoundedGrid<Actor>(ROWS, COLS);
-        
+
         // create a world based on the grid
         world = new ActorWorld(grid);
-        
-        // populate the game
-        populateGame();
         
         // display the newly constructed and populated world
         world.show();
         
+        // populate the game
+        populateGame();
+        
         // new generations
         createNextGeneration();
+
     }
     
     /**
@@ -124,27 +125,27 @@ public class GameOfLife
         
         // create the grid, of the specified size, that contains Actors
         Grid<Actor> grid = world.getGrid();
+        //new grid to rep the new gen
+        Grid<Actor> gridnew = world.getGrid();
         
         // insert magic here...
-        int row = 0;
-        for (row = 0; row<100; row++)
+        for (int row = 0; row<ROWS; row++)
         {
-            for (int column = 0; column<100; column++)
+            for (int column = 0; column<COLS; column++)
             {
                 Location loc = new Location(row, column);
-                ArrayList array = grid.getNeighbors(loc);
+                ArrayList array = grid.getOccupiedAdjacentLocations(loc);
                 int numNeighbors = array.size();
                 if (numNeighbors==3 && grid.get(loc)==null)
                 {
                     Rock rock = new Rock();
-                    grid.put(loc, rock);
+                    gridnew.put(loc, rock);
                 }
-                else if ((numNeighbors<2 || numNeighbors>3) &&  grid.get(loc)!=null)
+                else if ((numNeighbors<2 || numNeighbors>3) && grid.get(loc)!=null)
                 {
-                    grid.remove(loc);
+                    gridnew.remove(loc);
                 }
-            }
-            
+            } 
         }
 
     }
