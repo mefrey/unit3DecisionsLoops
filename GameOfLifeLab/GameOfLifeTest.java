@@ -6,10 +6,11 @@ import org.junit.Test;
 import info.gridworld.actor.Actor;
 
 /**
- * The test class GameOfLifeTest.
+ * The test class GameOfLifeTest that checks if the initial state
+ * and final state after several generations.
  *
- * @author  @gcschmit
- * @version 19 July 2014
+ * @author  @mefrey
+ * @version 20 November 2014
  */
 public class GameOfLifeTest
 {
@@ -99,6 +100,7 @@ public class GameOfLifeTest
 
     @Test
     public void testFinalState()
+    throws InterruptedException
     {
         /* expected pattern for initial state
          *  (X: alive; -: dead)
@@ -118,6 +120,11 @@ public class GameOfLifeTest
          */
         
         GameOfLife game = new GameOfLife();
+        for (int i = 0; i < 3; i++)
+        {
+            Thread.sleep(500); // sleep 1000 milliseconds (1 second)
+            game.createNextGeneration();
+        }
         final int ROWS = game.getNumRows();
         final int COLS = game.getNumCols();
 
@@ -128,7 +135,8 @@ public class GameOfLifeTest
                 // in this example, an alive cell has a non-null actor and a dead cell has a null actor
                 Actor cell = game.getActor(row, col);
 
-                // if the cell at the current row and col should be alive, assert that the actor is not null
+                // if the cell at the current row and col should be alive, 
+                //assert that the actor is not null
                 if(     (row == 0 && col == 2) ||
                         (row == 1 && col == 3) ||
                         (row == 1 && col == 7) ||

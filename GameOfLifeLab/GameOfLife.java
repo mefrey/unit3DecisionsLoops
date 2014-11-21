@@ -57,12 +57,6 @@ public class GameOfLife
         
         // populate the game
         populateGame();
-        
-        // new generations
-        for (int i = 0; i < 3; i++)
-        {
-            createNextGeneration();
-        }
 
     }
     
@@ -145,19 +139,14 @@ public class GameOfLife
      * @post    the world has been populated with a new grid containing the next generation
      * 
      */
-    private void createNextGeneration()
+    public void createNextGeneration()
     {
-        /** You will need to read the documentation for the World, Grid, and Location classes
-         *      in order to implement the Game of Life algorithm and leverage the GridWorld framework.
-         */
-        
         // create the grid, of the specified size, that contains Actors
         Grid<Actor> grid = world.getGrid();
 
         // new grid
         BoundedGrid<Actor> gridnew = new BoundedGrid<Actor>(ROWS, COLS);
-        
-        // insert magic here...
+        //reads from old grid but makes changes to the new grid
         for (int row = 0; row<ROWS; row++)
         {
             for (int column = 0; column<COLS; column++)
@@ -181,6 +170,7 @@ public class GameOfLife
                 }
             } 
         }
+        //replaces old grid with new grid
         world.setGrid(gridnew);
 
     }
@@ -226,8 +216,15 @@ public class GameOfLife
      *
      */
     public static void main(String[] args)
+    throws InterruptedException
     {
         GameOfLife game = new GameOfLife();
+        // new generations
+        for (int i = 0; i < 3; i++)
+        {
+            Thread.sleep(500); // sleep 1000 milliseconds (1 second)
+            game.createNextGeneration();
+        }
     }
 
 }
