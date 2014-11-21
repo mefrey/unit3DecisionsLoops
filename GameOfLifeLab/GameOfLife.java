@@ -7,31 +7,36 @@ import info.gridworld.grid.Location;
 import java.util.ArrayList;
 
 /**
- * Game of Life starter code. Demonstrates how to create and populate the game using the GridWorld framework.
- * Also demonstrates how to provide accessor methods to make the class testable by unit tests.
+ * Game of Life contains a grid that is filled with actors that are created and destroyed
+ * based on the rules in conway's game of life
  * 
- * @author @gcschmit
- * @version 18 July 2014
+ * @author @mefrey
+ * @version 20 November 2014
  */
 public class GameOfLife
 {
     // the world comprised of the grid that displays the graphics for the game
     private ActorWorld world;
     
-    // the game board will have 100 rows and 100 columns
-    private final int ROWS = 100;
-    private final int COLS = 100;
+    // the game board will have 10 rows and 10 columns
+    private final int ROWS = 10;
+    private final int COLS = 10;
     
     // constants for the location of the 9 cells initially alive
     private final int X1 = 0, Y1 = 0;
-    private final int X2 = 0, Y2 = 8;
-    private final int X3 = 0, Y3 = 9;
-    private final int X4 = 3, Y4 = 4;
-    private final int X5 = 4, Y5 = 4;
-    private final int X6 = 5, Y6 = 4;
-    private final int X7 = 9, Y7 = 0;
-    private final int X8 = 9, Y8 = 1;
-    private final int X9 = 9, Y9 = 9;
+    private final int X2 = 0, Y2 = 2;
+    private final int X3 = 0, Y3 = 8;
+    private final int X4 = 1, Y4 = 1;
+    private final int X5 = 1, Y5 = 2;
+    private final int X6 = 1, Y6 = 8;
+    private final int X7 = 2, Y7 = 1;
+    private final int X8 = 2, Y8 = 8;
+    private final int X9 = 6, Y9 = 4;
+    private final int X10 = 7, Y10 = 3;
+    private final int X11 = 7, Y11 = 5;
+    private final int X12 = 8, Y12 = 3;
+    private final int X13 = 8, Y13 = 5;
+    private final int X14 = 9, Y14 = 4;
 
     /**
      * Default constructor for objects of class GameOfLife
@@ -54,7 +59,10 @@ public class GameOfLife
         populateGame();
         
         // new generations
-        createNextGeneration();
+        for (int i = 0; i < 3; i++)
+        {
+            createNextGeneration();
+        }
 
     }
     
@@ -107,6 +115,26 @@ public class GameOfLife
         Rock rock9 = new Rock();
         Location loc9 = new Location(X9, Y9);
         grid.put(loc9, rock9);
+        
+        Rock rock10 = new Rock();
+        Location loc10 = new Location(X10, Y10);
+        grid.put(loc10, rock10);
+        
+        Rock rock11 = new Rock();
+        Location loc11 = new Location(X11, Y11);
+        grid.put(loc11, rock11);
+        
+        Rock rock12 = new Rock();
+        Location loc12 = new Location(X12, Y12);
+        grid.put(loc12, rock12);
+        
+        Rock rock13 = new Rock();
+        Location loc13 = new Location(X13, Y13);
+        grid.put(loc13, rock13);
+        
+        Rock rock14 = new Rock();
+        Location loc14 = new Location(X14, Y14);
+        grid.put(loc14, rock14);
     }
 
     /**
@@ -146,8 +174,10 @@ public class GameOfLife
                 {
                     gridnew.remove(loc);
                 }
-                else
+                else if (grid.get(loc)!=null)
                 {
+                    Rock rock = new Rock();
+                    gridnew.put(loc, rock);
                 }
             } 
         }
